@@ -1,6 +1,7 @@
 export function getPokemonCard(pokemon) {
     const contenedor = document.createElement("div");
     const nombre = document.createElement("p");
+    const idText = document.createElement("p");
     const imagenPoke = document.createElement("img");
     const id = pokemon.url.split("/").filter(Boolean).pop();
 
@@ -9,11 +10,12 @@ export function getPokemonCard(pokemon) {
     imagenPoke.classList.add("pokemon-image");
 
     nombre.textContent = pokemon.name;
+    idText.textContent = `#${id}`;
 
     imagenPoke.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
     imagenPoke.alt = pokemon.name;
 
-    contenedor.append(imagenPoke,nombre);
+    contenedor.append(idText,imagenPoke,nombre);
     return contenedor;
     
 }

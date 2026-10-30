@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,20 @@
     <link rel="stylesheet" href="./css/pokemonCard.css">
     <title>PokedexMark</title>
 </head>
+
 <body>
     <div id="container"></div>
-    <div id="listaPokemon"></div>
-    <button id="atrasButton">atras</button>
-    <button id="adelantebutton">adelante</button>
+    <div class="pokemons">
+        <div id="listaPokemon"></div>
+        <div class="paginacion">
+            <button id="atrasButton">atras</button>
+            <span class="pagina"></span>
+            <span> de </span>
+            <span class="total"></span>
+            <button id="adelantebutton">adelante</button>
+        </div>
+    </div>
     <script type="module" src="./js/index.js"></script>
 </body>
+
 </html>
