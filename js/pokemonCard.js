@@ -1,3 +1,5 @@
+import { getPokemonInfo } from "./main.js";
+
 export function getPokemonCard(pokemon) {
     const contenedor = document.createElement("div");
     const nombre = document.createElement("p");
@@ -14,6 +16,12 @@ export function getPokemonCard(pokemon) {
 
     imagenPoke.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
     imagenPoke.alt = pokemon.name;
+    
+    contenedor.addEventListener("click", async ()=>{
+        localStorage.setItem("pokemonInfo", id);
+        window.location.href = "/html/pokemon.html";
+        
+    })
 
     contenedor.append(idText,imagenPoke,nombre);
     return contenedor;
