@@ -1,4 +1,3 @@
-import { getPokemonInfo } from "./main.js";
 
 export function getPokemonCard(pokemon) {
     const contenedor = document.createElement("div");

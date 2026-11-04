@@ -1,4 +1,4 @@
-import { getPokemonInfo, getPokemonEvolutions, obtenerHabilidad } from "./main.js";
+import { getPokemonInfo, getPokemonEvolutions, obtenerHabilidad, obtenerEvoluciones } from "./main.js";
 
 const pokemon = await getPokemonInfo(localStorage.getItem("pokemonInfo"));
 const pokemonEvos = await getPokemonEvolutions(pokemon.evolutionChain);
@@ -84,14 +84,67 @@ async function mostrarInfoPoke() {
 
         // Añadir elementos al contenedor
         habilidadDiv.append(habilidadNombre, habilidadDescripcion);
-
         // Añadir al contenedor principal
         habilidadesDiv.appendChild(habilidadDiv);
     }
+
+
+    const evolucionesDiv = document.createElement("div");
+    evolucionesDiv.classList.add("evoluciones");
+    evolucionesDiv.append(await mostrarEvoluciones())
+
     info1Div.append(statsDiv, habilidadesDiv);
-    infoContainer.append(info1Div)
+    infoContainer.append(info1Div, evolucionesDiv)
     container.append(imagenContainer, infoContainer);
 
 }
+async function mostrarEvoluciones() {
+    const evoluciones = await obtenerEvoluciones(pokemon.evolutionChain);
 
-mostrarInfoPoke()
+    // Contenedor principal
+    const contenedor = document.createElement("div");
+    contenedor.classList.add("evoluciones-container");
+
+    // Obtener todos los Pokémon en paralelo
+    const tarjetas = await Promise.all(
+        evoluciones.map(async evolucion => {
+            const id = evolucion.url.split("/").filter(Boolean).pop();
+            const pokemonInfo = await getPokemonInfo(id);
+
+            const div = document.createElement("div");
+            div.classList.add("pokemon-card");
+
+
+            // Crear imagen
+            const img = document.createElement("img");
+            img.src = pokemonInfo.sprites.front_default;
+            img.alt = pokemonInfo.name;
+
+            // Crear nombre
+            const nombre = document.createElement("p");
+            nombre.textContent = pokemonInfo.name;
+
+            div.appendChild(img);
+            div.appendChild(nombre);
+
+            return div;
+        })
+
+    );
+
+    // Añadir todas las tarjetas al contenedor
+    tarjetas.forEach((tarjeta, index) => {
+        contenedor.appendChild(tarjeta);
+        if (index < tarjetas.length - 1) {
+            const flecha = document.createElement("span");
+            flecha.textContent = ">";
+            flecha.classList.add("flecha-evolucion");
+
+            contenedor.appendChild(flecha);
+        }
+    });
+
+    return contenedor;
+}
+
+mostrarInfoPoke();

@@ -125,3 +125,38 @@ export async function obtenerHabilidad(url) {
         return null
     }
 }
+
+export async function obtenerEvoluciones(url) {
+    try {
+        const respuesta = await fetch(url);
+
+        if (!respuesta.ok) {
+            throw new Error("No se ha podido obtener la cadena evolutiva");
+        }
+
+        const datos = await respuesta.json();
+
+        let pendientes = [datos.chain];
+        let evoluciones = [];
+
+
+        while (pendientes.length > 0) {
+            let actual = pendientes.shift();
+
+            evoluciones.push({
+                nombre: actual.species.name,
+                url: actual.species.url
+            });
+
+            actual.evolves_to.forEach(evolucion => {
+                pendientes.push(evolucion);
+            });
+        }
+
+        return evoluciones;
+
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
