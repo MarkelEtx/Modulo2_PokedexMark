@@ -4,12 +4,14 @@ const coloresGeneraciones = ["#D98282", "#C9B46A", "#79BDA1", "#7FA5DB", "#9292A
 const coloresBordes = ["#B96767", "#A9934D", "#5C9D81", "#6388BE", "#74748D", "#B76F97", "#BF9055", "#6683AF", "#916FB0"];
 
 let paginaActual = 0;
-const pokemonsPorPagina = 30;
+const pokemonsPorPagina = 20;
 const contenedor = document.querySelector("#container");
 const lista = document.querySelector("#listaPokemon");
 
 const atrasButton = document.querySelector("#atrasButton");
 const adelanteButton = document.querySelector("#adelantebutton");
+const pagina = document.querySelector(".pagina");
+const total = document.querySelector(".total");
 let listaPokemonActual = [];
 
 async function creacionGeneraciones() {
@@ -41,9 +43,14 @@ async function creacionGeneraciones() {
 }
 function crearListaPokemon(listaPokemon) {
     lista.replaceChildren();
+    
     const inicio = paginaActual * pokemonsPorPagina;
     const final = inicio + pokemonsPorPagina;
     const pokemonPagina = listaPokemon.slice(inicio, final);
+
+    const totalPaginas = Math.ceil(listaPokemon.length / pokemonsPorPagina);
+    pagina.textContent = paginaActual + 1;
+    total.textContent = totalPaginas;
 
     pokemonPagina.forEach(pokemon => {
         lista.append(getPokemonCard(pokemon));

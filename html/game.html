@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/game.css">
+</head>
+
+<body>
+    <div class="game-controls">
+        <input type="text" id="pokemon-input" placeholder="Escribe un Pokémon..." autocomplete="off">
+        <button id="check-button">
+            Comprobar
+        </button>
+        <div id="pokemon-counter">
+            <span id="discovered-count">0</span> / 151
+            <small>Descubiertos</small>
+        </div>
+    </div>
+
+    <div id="pokemon-grid"></div>
+    <script type="module" src="../js/game.js"></script>
+</body>
+
+</html>
