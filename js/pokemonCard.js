@@ -1,5 +1,7 @@
 
 export function getPokemonCard(pokemon) {
+    console.log(pokemon);
+    
     const contenedor = document.createElement("div");
     const nombre = document.createElement("p");
     const idText = document.createElement("p");

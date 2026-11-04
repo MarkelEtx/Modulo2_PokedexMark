@@ -69,8 +69,8 @@ export async function getPokemonInfo(id) {
             abilities: pokemonData.abilities,
             stats: pokemonData.stats,
             sprites: pokemonData.sprites,
+            url: pokemonData.species.url
         }
-
         // Combinar los datos de ambos endpoints
         return pokemonInfo;
 

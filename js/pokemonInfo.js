@@ -1,4 +1,5 @@
 import { getPokemonInfo, getPokemonEvolutions, obtenerHabilidad, obtenerEvoluciones } from "./main.js";
+import { getPokemonCard } from "./pokemonCard.js";
 
 const pokemon = await getPokemonInfo(localStorage.getItem("pokemonInfo"));
 const pokemonEvos = await getPokemonEvolutions(pokemon.evolutionChain);
@@ -110,24 +111,7 @@ async function mostrarEvoluciones() {
         evoluciones.map(async evolucion => {
             const id = evolucion.url.split("/").filter(Boolean).pop();
             const pokemonInfo = await getPokemonInfo(id);
-
-            const div = document.createElement("div");
-            div.classList.add("pokemon-card");
-
-
-            // Crear imagen
-            const img = document.createElement("img");
-            img.src = pokemonInfo.sprites.front_default;
-            img.alt = pokemonInfo.name;
-
-            // Crear nombre
-            const nombre = document.createElement("p");
-            nombre.textContent = pokemonInfo.name;
-
-            div.appendChild(img);
-            div.appendChild(nombre);
-
-            return div;
+            return getPokemonCard(pokemonInfo);
         })
 
     );
