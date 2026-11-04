@@ -1,7 +1,9 @@
 import { getGenerationInfo, getPokemonInfo } from "./main.js";
 import { getPokemonCard } from "./pokemonCard.js";
 
-const pokemonList = await getGenerationInfo("https://pokeapi.co/api/v2/generation/1/");
+const pokemonList = await getGenerationInfo(localStorage.getItem("generationGame"));
+
+
 const discoveredPokemon = new Set();
 
 
@@ -67,4 +69,5 @@ input.addEventListener("keydown", (event) => {
         checkPokemon();
     }
 });
+document.getElementById("pokemon-count").textContent = pokemonList.pokemon_species.length;
 createGrid();
