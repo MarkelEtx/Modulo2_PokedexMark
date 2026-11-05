@@ -8,6 +8,10 @@ console.log("evos", pokemonEvos);
 
 
 async function mostrarInfoPoke() {
+    console.log(pokemon);
+    
+    document.getElementById("nombre-pokemon").textContent = pokemon.name;
+
     const container = document.querySelector("#container");
 
     // Contenedor de la imagen y los tipos

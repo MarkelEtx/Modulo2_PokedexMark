@@ -7,11 +7,13 @@ let paginaActual = 0;
 const pokemonsPorPagina = 20;
 const contenedor = document.querySelector("#container");
 const lista = document.querySelector("#listaPokemon");
+const pokemons = document.querySelector(".pokemons");
 
 const atrasButton = document.querySelector("#atrasButton");
 const adelanteButton = document.querySelector("#adelantebutton");
 const pagina = document.querySelector(".pagina");
 const total = document.querySelector(".total");
+pokemons.style.display = "none";
 let listaPokemonActual = [];
 
 async function creacionGeneraciones() {
@@ -20,6 +22,8 @@ async function creacionGeneraciones() {
         const generacionesLista = generacionesInfo.results;
         console.log(generacionesLista);
         generacionesLista.forEach((generacion, index) => {
+            const grupo = document.createElement("div");
+            grupo.classList.add("grupo-generacion");
             const cuadro = document.createElement("button");
             cuadro.type = "button";
             cuadro.classList.add(`generacion`, `gen-${index + 1}`);
@@ -31,8 +35,22 @@ async function creacionGeneraciones() {
                 listaPokemonActual = infoPokemon.pokemon_species;
                 paginaActual = 0;
                 crearListaPokemon(infoPokemon.pokemon_species)
+                pokemons.style.display = "block";
             })
-            contenedor.append(cuadro);
+            const jugar = document.createElement("button");
+            jugar.type = "button";
+            jugar.classList.add(`boton-juego`);
+            jugar.textContent = `Jugar Gen. ${index + 1}`;
+            jugar.style.backgroundColor = coloresGeneraciones[index];
+            jugar.style.borderColor = coloresBordes[index];
+            jugar.addEventListener("click", () => {
+
+                localStorage.setItem("generationGame", generacion.url);
+                window.location.href = "/html/game.html";
+            })
+            grupo.append(cuadro, jugar);
+            contenedor.append(grupo);
+
         });
 
     } catch (error) {
@@ -42,8 +60,9 @@ async function creacionGeneraciones() {
 
 }
 function crearListaPokemon(listaPokemon) {
+
     lista.replaceChildren();
-    
+
     const inicio = paginaActual * pokemonsPorPagina;
     const final = inicio + pokemonsPorPagina;
     const pokemonPagina = listaPokemon.slice(inicio, final);

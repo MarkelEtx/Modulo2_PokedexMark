@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+   <title>PokedexMark</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/game.css">
 </head>
 
 <body>
     <div class="game-controls">
+        <button id="back-button" class="back-button" aria-label="Volver"> < </button>
         <input type="text" id="pokemon-input" placeholder="Escribe un Pokémon..." autocomplete="off">
         <button id="check-button">
             Comprobar
         </button>
         <div id="pokemon-counter">
-            <span id="discovered-count">0</span> / 151
+            <span id="discovered-count">0</span> / <span id="pokemon-count"></span>
             <small>Descubiertos</small>
         </div>
     </div>
