@@ -7,11 +7,13 @@ let paginaActual = 0;
 const pokemonsPorPagina = 20;
 const contenedor = document.querySelector("#container");
 const lista = document.querySelector("#listaPokemon");
+const pokemons = document.querySelector(".pokemons");
 
 const atrasButton = document.querySelector("#atrasButton");
 const adelanteButton = document.querySelector("#adelantebutton");
 const pagina = document.querySelector(".pagina");
 const total = document.querySelector(".total");
+pokemons.style.display = "none";
 let listaPokemonActual = [];
 
 async function creacionGeneraciones() {
@@ -33,6 +35,7 @@ async function creacionGeneraciones() {
                 listaPokemonActual = infoPokemon.pokemon_species;
                 paginaActual = 0;
                 crearListaPokemon(infoPokemon.pokemon_species)
+                pokemons.style.display = "block";
             })
             const jugar = document.createElement("button");
             jugar.type = "button";
@@ -41,8 +44,7 @@ async function creacionGeneraciones() {
             jugar.style.backgroundColor = coloresGeneraciones[index];
             jugar.style.borderColor = coloresBordes[index];
             jugar.addEventListener("click", () => {
-                console.log("pepepepepeep");
-                
+
                 localStorage.setItem("generationGame", generacion.url);
                 window.location.href = "/html/game.html";
             })
@@ -58,6 +60,7 @@ async function creacionGeneraciones() {
 
 }
 function crearListaPokemon(listaPokemon) {
+
     lista.replaceChildren();
 
     const inicio = paginaActual * pokemonsPorPagina;

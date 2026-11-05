@@ -7,12 +7,14 @@ body {
         padding: 0.75rem;
     }
 }
+
 #pokemon-grid {
     width: 100%;
     box-sizing: border-box;
     padding: 0.75rem;
     background-color: #fff;
     border-radius: 10px;
+    border: 3px solid #303030;
 
     display: grid;
     grid-template-columns: repeat(26, minmax(0, 1fr));
@@ -36,6 +38,25 @@ body {
         grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 }
+
+.back-button {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    background-color: white;
+    color: #303030;
+    border: 2px solid #303030;
+    border-radius: 8px;
+    box-shadow: 0 3px 0 #303030;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
 
 .pokemon-card {
     background-color: #fff;
@@ -96,6 +117,7 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 .game-controls {
     display: flex;
     justify-content: center;
