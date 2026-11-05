@@ -3,12 +3,9 @@ import { getPokemonCard } from "./pokemonCard.js";
 
 const pokemon = await getPokemonInfo(localStorage.getItem("pokemonInfo"));
 const pokemonEvos = await getPokemonEvolutions(pokemon.evolutionChain);
-console.log("poke", pokemon);
-console.log("evos", pokemonEvos);
 
 
 async function mostrarInfoPoke() {
-    console.log(pokemon);
     
     document.getElementById("nombre-pokemon").textContent = pokemon.name;
 

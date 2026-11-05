@@ -20,7 +20,6 @@ async function creacionGeneraciones() {
     try {
         const generacionesInfo = await getGenerations();
         const generacionesLista = generacionesInfo.results;
-        console.log(generacionesLista);
         generacionesLista.forEach((generacion, index) => {
             const grupo = document.createElement("div");
             grupo.classList.add("grupo-generacion");
