@@ -6,6 +6,7 @@ const generation = localStorage.getItem("generationGame").split("/").filter(Bool
 const progressKey = `discoveredPokemon-${generation}`;
 const pokemonList = await getGenerationInfo(localStorage.getItem("generationGame"));
 const discoveredPokemon = new Set();
+const buttonAtras = document.querySelector("#back-button");
 
 async function inicioJuego() {
     loadProgress();
@@ -97,5 +98,10 @@ input.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         checkPokemon();
     }
+});
+
+buttonAtras.addEventListener("click", (event) => {
+    window.location.href = "../index.html";
+    
 });
 inicioJuego();
